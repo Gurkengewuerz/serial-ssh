@@ -24,6 +24,7 @@ var (
 	tempPassword    string
 	dataBuf         []byte
 	openConnections = 0
+	BUFFER_LENGTH   = 16 * 1024
 )
 
 func runForPort(portName string, mode *serial.Mode) bool {
@@ -62,8 +63,8 @@ func runForPort(portName string, mode *serial.Mode) bool {
 		}
 
 		dataBuf = append(dataBuf, buf[:n]...)
-		if len(dataBuf) > 1024 {
-			dataBuf = dataBuf[len(dataBuf)-(16*1024):]
+		if len(dataBuf) > BUFFER_LENGTH {
+			dataBuf = dataBuf[len(dataBuf)-BUFFER_LENGTH:]
 		}
 
 		if openConnections > 0 {
