@@ -1,0 +1,7 @@
+build/
+.actrc
+.idea/
+packrd/
+*packr.go
+act/
+sshkeys
