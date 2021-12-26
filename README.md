@@ -12,5 +12,5 @@ docker run --rm -it \
   -v /dev/ttyUSB0:/dev/ttyUSB0 \
   -v $(pwd)/banner:/banner \
   -v $(pwd)/sshkeys:/sshkeys \
-  gurkengewuerz/serial-ssh:latest
+  gurken2108/serial-ssh:latest
 ```
