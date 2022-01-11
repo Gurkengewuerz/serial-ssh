@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	crypto_rand "crypto/rand"
 	"encoding/binary"
 	"fmt"
@@ -175,6 +176,13 @@ func main() {
 				n, err := s.Read(buf)
 				if err != nil || n == 0 {
 					quit <- true
+					continue
+				}
+
+				// CTRL + F1
+				if bytes.Equal(buf[0:6], []byte{0x1b, 0x5b, 0x31, 0x3b, 0x35, 0x50}) {
+					sshChan <- []byte(fmt.Sprintf("TERM=xterm && $SHELL\n"))
+					log.Print("send interactive shell command")
 					continue
 				}
 
